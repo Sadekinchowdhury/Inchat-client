@@ -3,7 +3,7 @@ import { useQuery } from 'react-query';
 import GetComment from './GetComment';
 
 const Comment = ({ post }) => {
-    console.log(post)
+
 
     const { data: getComment = [], refetch } = useQuery({
         queryKey: ['post/comment', post?._id],

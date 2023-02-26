@@ -1,32 +1,21 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { BiLike, BiComment, BiMessage } from 'react-icons/bi'
+import React, { useContext, useState } from 'react';
+import { BiLike, BiComment, BiMessage, BiReset } from 'react-icons/bi'
 import { Link } from 'react-router-dom';
-import Datetime from 'react-datetime';
 import { AuthContext } from '../../../AuthProvider/AuthProvider';
-import { Controller, get } from 'react-hook-form';
-import { useQuery } from 'react-query';
-import GetComment from '../Getcomment/GetComment';
 import { toast } from 'react-hot-toast';
 import Comment from '../Getcomment/Comment';
-import Posted from './../Posted/Posted';
+import { FaCross, FaEdit } from 'react-icons/fa';
+
+
 
 const CommunityPosteds = ({ post, refetch }) => {
-
+    refetch()
     const { _id, liking } = post
-    const { user, userInfo } = useContext(AuthContext)
+    const { userInfo } = useContext(AuthContext)
 
 
 
-    // const { data: getComment = [] } = useQuery({
-    //     queryKey: ['post/comment', post?._id],
-    //     queryFn: async () => {
-    //         const res = await fetch(`http://localhost:5000/post/comment/${post?._id}`);
-    //         const data = await res.json()
-    //         refetch()
-    //         return data;
-    //     }
 
-    // })
     const [like, setLike] = useState(liking + 1 || 1)
 
     const addlike = () => {
@@ -102,7 +91,7 @@ const CommunityPosteds = ({ post, refetch }) => {
             .then(res => res.json())
             .then(data => {
 
-                if (data.deletedCount > 1) {
+                if (data.deletedCount > 0) {
                     toast.success('Deleted successfully')
                 }
 
@@ -142,9 +131,40 @@ const CommunityPosteds = ({ post, refetch }) => {
 
                 </div>
                 <div>
-                    <button onClick={DeletePost} className="btn btn-square btn-outline">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" /></svg>
-                    </button>
+
+
+                    <div className="dropdown p-3 lg:mr-3 dropdown-end lg:m-1 m-1">
+                        <label tabIndex={0} >
+
+
+                            <div className="">
+                                <FaEdit className='w-7 h-7'></FaEdit>
+                            </div>
+
+
+                            {/* <div className="w-10 rounded-full">
+                            <img src={userInfo?.image} alt='' />
+                        </div> */}
+                        </label>
+                        <ul tabIndex={0} className="mt-3 p-2 shadow-inner menu menu-compact dropdown-content bg-base-100 rounded-box lg:w-32">
+
+
+                            <li><a>
+                                Edit
+                                {/* <label htmlFor="edit-modal" className="btn">edit</label> */}
+                            </a></li>
+                            <li><a>
+                                <h1 className='font-semibold text-xl
+                                '>Delete </h1>
+                                <button onClick={DeletePost} className="btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" /></svg>
+                                </button>
+                            </a></li>
+
+
+                        </ul>
+                    </div>
+
                 </div>
             </div>
 

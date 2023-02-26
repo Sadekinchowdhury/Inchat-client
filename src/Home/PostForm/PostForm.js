@@ -62,7 +62,7 @@ const PostForm = () => {
                     .then(data => {
                         if (data.acknowledged) {
                             toast('You are posted succecfully')
-                            data.target.reset()
+
                         }
                         console.log(data)
 

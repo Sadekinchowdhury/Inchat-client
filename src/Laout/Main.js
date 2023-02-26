@@ -7,10 +7,11 @@ import Navbar from '../Navbar/Navbar';
 import Mobiledashboard from '../Pages/Mobildasboard/Mobiledashboard';
 import Left from '../SidedashBoard/Left';
 import Right from '../SidedashBoard/Right';
-
+import { Scrollbars } from 'react-custom-scrollbars-2';
 const Main = () => {
     const { user } = useContext(AuthContext)
     return (
+
         <div>
             {
                 user?.uid ?
@@ -40,6 +41,8 @@ const Main = () => {
                     </>
             }
         </div>
+
+
     );
 };
 
