@@ -31,7 +31,7 @@ const Posted = () => {
             })
             const data = await res.json();
             refetch()
-            console.log(data)
+
             return data;
 
         }

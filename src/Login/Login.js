@@ -3,14 +3,17 @@ import { useForm } from 'react-hook-form'
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../AuthProvider/AuthProvider';
 import GoogleLogin from '../GoogleLogin/GoogleLogin';
-
+import { toast } from 'react-toastify';
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
 
 const Login = () => {
-    const { register, formState: { errors }, handleSubmit } = useForm()
-    const [loginerror, setLoginerror] = useState('')
 
-    const { LogIn } = useContext(AuthContext)
+
+    const { register, formState: { errors }, handleSubmit } = useForm()
+    // const [loginerror, setLoginerror] = useState('')
+
+    const { userInfo } = useContext(AuthContext)
 
     const location = useLocation()
 
@@ -18,31 +21,45 @@ const Login = () => {
 
 
     const from = location.state?.from?.pathname || '/'
-
+    const auth = getAuth();
 
     const handlogin = data => {
 
-        setLoginerror('')
-        LogIn(data.email, data.password)
-            .then(result => {
-                const user = result.user
+        signInWithEmailAndPassword(auth, data.email, data.password)
+            .then((userCredential) => {
+                // Signed in 
+                const user = userCredential.user;
+                if (user?.uid) {
+                    toast(`Welcome ${userInfo?.firstName}`)
+                    navigate('/')
+                }
                 console.log(user)
-                // toast.success('successfully login')
-                // navigate('/home')
-                // navigate(from, { replace: true })
+                // ...
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+            });
 
-            })
-            .catch(error => {
-                console.log(error.message)
-                setLoginerror(error.message)
-            })
+        // // setLoginerror('')
+        // LogIn(data.email, data.password)
+        //     .then(result => {
+        //         const user = result.user
+        //         console.log(user)
+        //         toast.success('successfully login')
+        //         navigate('/home')
+        //         // navigate(from, { replace: true })
+
+        //     })
+        //     .catch(error => {
+        //         console.log(error)
+
+        //     })
     }
 
 
-
-
     return (
-        <div className='m-3'>
+        <div className='m-3 bg-black'>
             <div className='grid place-items-center  lg:h-screen'>
                 <div className='bg-pink-900 p-10 shadow-2xl rounded-3xl'>
                     <h1 className='text-4xl text-white font-bold text-center '>Login</h1>
@@ -78,9 +95,7 @@ const Login = () => {
                         <p></p>
                         <input className='btn btn-accent w-full' type="submit" />
                     </form>
-                    <div>
-                        {loginerror && <p className='text-red-600'>{loginerror}</p>}
-                    </div>
+
                     <p className='text-white'>new to create account <Link className='text-green-600' to='/signup'>Create account</Link> </p>
                     <div className="divider text-white">OR</div>
                     <GoogleLogin></GoogleLogin>

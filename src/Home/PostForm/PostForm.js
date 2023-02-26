@@ -2,13 +2,22 @@ import React, { useContext } from 'react';
 import { useForm } from "react-hook-form";
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
+import { toast } from 'react-toastify';
+
+
+
+
 
 const PostForm = () => {
-    const { user, loading } = useContext(AuthContext)
+    const { user, loading, userInfo } = useContext(AuthContext)
     console.log(user)
     const imageHostkeyk = `b594fa7696a7b82ee601812a121198fc`
     const { register, formState: { errors }, handleSubmit } = useForm()
     const navigate = useNavigate()
+    let state = {
+        curDT: new Date().toLocaleString(),
+    }
+
 
     const PostButton = data => {
 
@@ -36,8 +45,10 @@ const PostForm = () => {
                 const postData = {
                     post: data.post,
                     image: imgData.data.url,
-                    username: user?.displayName,
-                    email: user?.email
+                    firstName: userInfo?.firstName,
+                    lastName: userInfo?.lastName,
+                    userimage: userInfo?.image,
+                    email: user?.email, date: state.curDT
 
                 }
                 fetch('http://localhost:5000/post', {
@@ -50,8 +61,8 @@ const PostForm = () => {
                     .then(res => res.json())
                     .then(data => {
                         if (data.acknowledged) {
-                            navigate('/')
-
+                            toast('You are posted succecfully')
+                            data.target.reset()
                         }
                         console.log(data)
 
@@ -68,22 +79,27 @@ const PostForm = () => {
 
 
     return (
-        <section className='p-7 w-full'>
+        <section className='lg:p-6 p-3 mb-4 bg-white rounded-3xl lg:m-6  shadow-2xl '>
             <div>
                 <div className=''>
-                    <div className="avatar offline">
-                        <div className="w-10 rounded-full">
-                            <img alt='' src="https://placeimg.com/192/192/people" />
+                    <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
 
+
+                        <div className="w-24 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                            <img title={userInfo?.firstName} src={userInfo?.image} alt='' />
                         </div>
-                        <span className='ml-3 font-bold'> {user?.displayName}</span>
-                    </div>
+
+
+                        {/* <div className="w-10 rounded-full">
+    <img src={userInfo?.image} alt='' />
+</div> */}
+                    </label>
                 </div>
 
 
                 <form onSubmit={handleSubmit(PostButton)}>
-                    <div>
-                        <textarea className='w-full p-3 outline rounded-2xl' type='text' {...register("post", {
+                    <div className='m-3'>
+                        <textarea className='lg:w-full lg:m-2  p-3 outline rounded-2xl' type='text' {...register("post", {
 
                         })} placeholder='Write you article....' id="" cols="10" rows="5">
 

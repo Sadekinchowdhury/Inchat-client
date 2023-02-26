@@ -15,11 +15,13 @@ const Main = () => {
             {
                 user?.uid ?
                     <div className=''>
-                        <Navbar></Navbar>
+                        <div className=''>
+                            <Navbar></Navbar>
+                        </div>
 
 
                         <div class="flex">
-                            <div class="lg:w-2/4  bg-sky-400 sticky  sm:flex hidden shadow-2xl">
+                            <div class="lg:w-2/5 card bg-slate-300 sticky  sm:flex hidden shadow-2xl">
                                 <Left></Left>
                             </div>
                             <div class="w-full">
@@ -27,7 +29,7 @@ const Main = () => {
                                 <Mobiledashboard></Mobiledashboard>
                                 <Outlet></Outlet>
                             </div>
-                            <div class="bg-indigo-400 sticky sm:flex hidden shadow-2xl lg:w-2/4">
+                            <div class="sticky sm:flex hidden bg--300 shadow-2xl card lg:w-2/5">
                                 <Right></Right>
                             </div>
                         </div>

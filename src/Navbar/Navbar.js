@@ -6,7 +6,7 @@ import { AuthContext } from '../AuthProvider/AuthProvider';
 const Navbar = () => {
 
     const navigate = useNavigate()
-    const { user, LogOut } = useContext(AuthContext)
+    const { user, LogOut, userInfo } = useContext(AuthContext)
     const handlLogout = () => {
         LogOut()
             .then(() => { })
@@ -17,7 +17,7 @@ const Navbar = () => {
     return (
 
 
-        <div className="navbar bg-sky-400 shadow-2xl">
+        <div className="navbar bg-white shadow-2xl">
             <div className="navbar-start">
                 <div className="dropdown">
                     <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -31,7 +31,7 @@ const Navbar = () => {
                 <div className='flex lg:ml-10 items-center'>
 
                     <div className=''>
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQDApD0NsZpVbq0Z-DlJRkn3zV58JcxGhWYw&usqp=CAU" className='rounded-full' height={40}
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQDApD0NsZpVbq0Z-DlJRkn3zV58JcxGhWYw&usqp=CAU" className='outline border-2 rounded-full' height={40}
                             width={40}
                             layout="fixed" alt="" />
                     </div>
@@ -45,15 +45,15 @@ const Navbar = () => {
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu grid grid-cols-4 gap-14 menu-horizontal px-1">
-                    <Link className='btn border-2  btn-ghost hover:bg-slate-400'><FaHome className='h-10 w-14'></FaHome> </Link>
+                    <Link title='Home' className='btn border-2  btn-ghost hover:bg-slate-400'><FaHome className='h-10 w-14'></FaHome> </Link>
 
-                    <Link className='btn border-2 btn-ghost hover:bg-slate-400 h-10 w-15'><FaUserFriends className='h-10 w-14'></FaUserFriends> </Link>
+                    <Link title='Friends' className='btn border-2 btn-ghost hover:bg-slate-400 h-10 w-15'><FaUserFriends className='h-10 w-14'></FaUserFriends> </Link>
 
-                    <Link className='btn btn-ghost hover:bg-slate-400 h-10 w-15'><FaPlay className='h-10 w-14'></FaPlay> </Link>
+                    <Link title='Video' className='btn btn-ghost hover:bg-slate-400 h-10 w-15'><FaPlay className='h-10 w-14'></FaPlay> </Link>
 
 
 
-                    <Link className='btn btn-ghost hover:bg-slate-400 h-10 w-15'><FaShoppingCart className='h-10 w-14'></FaShoppingCart> </Link>
+                    <Link title='marketplace' className='btn btn-ghost hover:bg-slate-400 h-10 w-15'><FaShoppingCart className='h-10 w-14'></FaShoppingCart> </Link>
 
 
                 </ul>
@@ -69,14 +69,22 @@ const Navbar = () => {
                 </div>
                 <div className="dropdown lg:mr-10 dropdown-end">
                     <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-                        <div className="w-10 rounded-full">
-                            <img src="/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+
+
+                        <div className="w-24 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                            <img title={userInfo?.firstName} src={userInfo?.image} alt='' />
                         </div>
+
+
+                        {/* <div className="w-10 rounded-full">
+                            <img src={userInfo?.image} alt='' />
+                        </div> */}
                     </label>
                     <ul tabIndex={0} className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">
                         <li>
                             <a className="justify-between">
-                                Profile
+                                {/* <img src={userInfo?.image} className='outline-1 border-2' alt="" /> */}
+
                                 <span className="badge">New</span>
                             </a>
                         </li>

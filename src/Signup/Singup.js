@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form'
+import { FaFile, FaFileAlt } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
@@ -16,9 +17,10 @@ const SignUp = () => {
     const { register, formState: { errors }, handleSubmit } = useForm()
 
     const [signuperror, setsignUperror] = useState('')
+    const [image, setImage] = useState('')
 
     const { creatUsers, updatePro, } = useContext(AuthContext)
-
+    const imageHostkeyk = `b594fa7696a7b82ee601812a121198fc`
 
     // const navigate = useNavigate()
     // if (token) {
@@ -29,8 +31,11 @@ const SignUp = () => {
     const handlsignup = data => {
         console.log(data)
 
+
+
+
         // creatt user
-        creatUsers(data.email, data.password, data.firstname, data.lastname)
+        creatUsers(data.email, data.password)
             .then(result => {
                 const user = result.user
                 console.log(user)
@@ -45,8 +50,8 @@ const SignUp = () => {
                 updatePro(userinfo)
                     .then(() => { })
 
-                //  save user
-                saveUser(data.email, data.name)
+                    //  save user
+                    // saveUser(data.email, data.firstName, data.lastName, image)
 
                     .catch(error => console.log(error))
                 console.log(user)
@@ -60,22 +65,43 @@ const SignUp = () => {
 
         //  saveUser
 
-        const saveUser = (email, name) => {
-            const users = { name, email }
-            fetch('http://localhost:5000/users', {
-                method: 'POST',
-                headers: {
-                    'content-type': 'application/json'
-                },
-                body: JSON.stringify(users)
-            })
-                .then(res => res.json())
-                .then(data => {
-                    console.log(data)
+        const image = data.img[0]
+
+        const formData = new FormData()
+        formData.append('image', image)
+        const url = `https://api.imgbb.com/1/upload?key=${imageHostkeyk}`
+        fetch(url, {
+            method: 'POST',
+            body: formData
 
 
+        })
+            .then(res => res.json())
+            .then(imgData => {
+                console.log(imgData)
+                if (imgData.success) {
+                    setImage(imgData.data.url)
+                    console.log(imgData.data.url)
+                }
+
+                const users = { email: data.email, firstName: data.firstName, lastName: data.lastName, image: imgData.data.url }
+                fetch('http://localhost:5000/users', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(users)
                 })
-        }
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data)
+
+
+                    })
+
+
+            })
+
     }
 
 
@@ -88,12 +114,26 @@ const SignUp = () => {
             <div className='rounded-3xl'>
                 <h1 className='text-6xl mb-10 text-green-700 text-center font-bold'>Signup</h1>
                 <form onSubmit={handleSubmit(handlsignup)}>
+                    <div className="form-control  items-center justify-center">
 
+                        <input type="file" {...register('img', {
+                            required: 'Photo is required'
+                        })}
+
+                            placeholder='Photo'
+                            className="bg-blue-900 p-3  input input-bordered rounded-full w-20 h-20" />
+                        {errors.name && <p className='text-red-600'>
+
+                            {errors.name.message}
+                        </p>}
+
+                    </div>
                     <div className='lg:flex gap-6'>
+
                         <div className="form-control w-full ">
                             <label className="label">
                                 <span className="label-text text-xl font-semibold mt-2">FirstName</span></label>
-                            <input type="text" name='firstname' {...register('name', {
+                            <input type="text" {...register('firstName', {
                                 required: 'name is requerd'
                             })}
                                 className="input input-bordered w-full max-w-xs" />
@@ -105,7 +145,7 @@ const SignUp = () => {
                         <div className="form-control w-full max-w-xs">
                             <label className="label">
                                 <span className="label-text text-xl font-semibold mt-2">LastName</span></label>
-                            <input type="text" name='lastname' {...register('name', {
+                            <input type="text"  {...register('lastName', {
                                 required: 'name is requerd'
                             })}
                                 className="input input-bordered w-full max-w-xs" />
