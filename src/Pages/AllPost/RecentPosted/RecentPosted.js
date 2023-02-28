@@ -5,6 +5,7 @@ import { AuthContext } from '../../../AuthProvider/AuthProvider';
 import { toast } from 'react-hot-toast';
 import Comment from '../Getcomment/Comment';
 import { FaCross, FaEdit } from 'react-icons/fa';
+import PostEdit from '../../Postedit/PostEdit';
 
 
 
@@ -146,13 +147,12 @@ const CommunityPosteds = ({ post, refetch }) => {
                             <img src={userInfo?.image} alt='' />
                         </div> */}
                         </label>
-                        <ul tabIndex={0} className="mt-3 p-2 shadow-inner menu menu-compact dropdown-content bg-base-100 rounded-box lg:w-32">
+                        <ul tabIndex={0} className="mt-3 p-2 shadow-inner menu menu-compact dropdown-content bg-base-100 rounded-box">
 
+                            <li>
+                                <Link><PostEdit></PostEdit></Link>
+                            </li>
 
-                            <li><a>
-                                Edit
-                                {/* <label htmlFor="edit-modal" className="btn">edit</label> */}
-                            </a></li>
                             <li><a>
                                 <h1 className='font-semibold text-xl
                                 '>Delete </h1>

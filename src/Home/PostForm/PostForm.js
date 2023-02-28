@@ -81,19 +81,23 @@ const PostForm = () => {
     return (
         <section className='lg:p-6 p-3 mb-4 bg-white rounded-3xl lg:m-6  shadow-2xl '>
             <div>
-                <div className=''>
+                <div className="avatar   ml-3 mt-2">
+
                     <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
 
 
                         <div className="w-24 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-                            <img title={userInfo?.firstName} src={userInfo?.image} alt='' />
+                            <img src={userInfo?.image} title={userInfo.firstName} alt='' />
                         </div>
 
 
-                        {/* <div className="w-10 rounded-full">
-    <img src={userInfo?.image} alt='' />
-</div> */}
+
                     </label>
+
+                    <p className='ml-3 font-bold'> {userInfo?.firstName}<span className='ml-1'>{userInfo?.lastName}</span></p>
+
+
+
                 </div>
 
 
