@@ -29,13 +29,17 @@ const Navbar = () => {
                                 user?.uid ? <Link onClick={LogOut}>Logout</Link> : <> </>
                             }
                         </li>
+                        <li>
+                            <FaUserFriends></FaUserFriends> <span>Friends</span>
+                        </li>
 
                     </ul>
                 </div>
-                <div className='flex lg:ml-10 items-center'>
+                <div className='lg:flex lg:ml-10 items-center'>
 
-                    <div className=''>
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQDApD0NsZpVbq0Z-DlJRkn3zV58JcxGhWYw&usqp=CAU" className='outline border-2 rounded-full' height={40}
+                    <div className='lg:flex hidden'>
+                        <img src="https://i.ibb.co/4T1skzY/download-6-removebg-preview.png" className='outline border-2 rounded-full'
+                            height={40}
                             width={40}
                             layout="fixed" alt="" />
                     </div>
@@ -49,9 +53,9 @@ const Navbar = () => {
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu grid grid-cols-4 gap-14 menu-horizontal px-1">
-                    <Link title='Home' className='btn border-2  btn-ghost hover:bg-slate-400'><FaHome className='h-7 w-14'></FaHome> </Link>
+                    <Link to={'/'} title='Home' className='btn border-2  btn-ghost hover:bg-slate-400'><FaHome className='h-7 w-14'></FaHome> </Link>
 
-                    <Link title='Friends' className='btn border-2 btn-ghost hover:bg-slate-400 h-7 w-15'><FaUserFriends className='h-7 w-14'></FaUserFriends> </Link>
+                    <Link to={'/friend'} title='Friends' className='btn border-2 btn-ghost hover:bg-slate-400 h-7 w-15'><FaUserFriends className='h-7 w-14'></FaUserFriends> </Link>
 
                     <Link title='Video' className='btn btn-ghost hover:bg-slate-400 h-7 w-15'><FaPlay className='h-7 w-14'></FaPlay> </Link>
 
@@ -64,18 +68,18 @@ const Navbar = () => {
 
             </div>
             <div className="navbar-end">
-                <div className='grid grid-cols-3 lg:mr-28'>
-                    <Link className='lg:btn items-center flex lg:btn-ghost hover:bg-slate-400'><AiFillNotification className='lg:w-4 lg:h-4'></AiFillNotification><span>2</span></Link>
+                <div className=' flex items-center  justify-center mr-10 lg:mr-20'>
+                    <AiFillNotification className='w-4 h-4 '></AiFillNotification><p className='mr-1 lg:mr-2'>4</p>
 
-                    <Link className='lg:btn lg:btn-ghost hover:bg-slate-400 items-center flex '><FaFacebookMessenger className='lg:h-4 lg:w-4'></FaFacebookMessenger> <p>29</p></Link>
+                    <FaFacebookMessenger className=' h-4 w-4'></FaFacebookMessenger><p className='mr-1 lg:mr-2'>5</p>
 
-                    <Link className='lg:btn lg:btn-ghost hover:bg-slate-400 items-center flex'><FaFlag className='lg:h-4 lg:w-4'></FaFlag> <p>1</p> </Link>
+                    <FaFlag className='h-4 w-4'></FaFlag> <p className='mr-1 lg:mr-2'>1</p>
                 </div>
                 <div className="dropdown lg:mr-10 dropdown-end">
                     <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
 
 
-                        <div className="lg:w-24 w-14 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                        <div className="lg:w-24  lg:flex hidden rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
                             <img title={userInfo?.firstName} src={userInfo?.image} alt='' />
                         </div>
 
@@ -95,7 +99,7 @@ const Navbar = () => {
                         <li><a>Settings</a></li>
                         <li><a>
                             {
-                                user?.uid ? <Link onClick={LogOut}>Logout</Link> : <> </>
+                                user?.uid ? <Link onClick={LogOut}>Logout</Link> : <> <Link to={'/login'}>Login</Link></>
                             }
 
                         </a></li>

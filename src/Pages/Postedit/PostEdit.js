@@ -10,7 +10,7 @@ import { toast } from 'react-toastify';
 
 const PostEdit = ({ post, refetch }) => {
     const { user, loading, userInfo } = useContext(AuthContext)
-    console.log(user)
+
     const imageHostkeyk = `b594fa7696a7b82ee601812a121198fc`
     const { register, formState: { errors }, handleSubmit } = useForm()
     const navigate = useNavigate()
@@ -38,7 +38,7 @@ const PostEdit = ({ post, refetch }) => {
                 console.log(imgData)
                 if (imgData.success) {
 
-                    console.log(imgData.data.url)
+
 
                 }
 
@@ -48,7 +48,8 @@ const PostEdit = ({ post, refetch }) => {
 
 
                 }
-                fetch(`http://localhost:5000/post/edit/${post?._id}`, {
+
+                fetch(`https://inchat-new.vercel.app/post/edit/${post?._id}`, {
                     method: 'PUT',
                     headers: {
                         'content-type': 'application/json'
@@ -62,7 +63,9 @@ const PostEdit = ({ post, refetch }) => {
 
                         // }
                         if (data.modifiedCount > 0) {
+
                             refetch()
+
                             toast.success('Post edited successfully')
                         }
                         console.log(data)
@@ -117,7 +120,7 @@ const PostEdit = ({ post, refetch }) => {
 
                     <form onSubmit={handleSubmit(PostButton)}>
                         <div className='m-3'>
-                            <textarea className='lg:w-full lg:m-2  w-4/5  p-3 outline rounded-2xl' type='text' {...register("post", {
+                            <textarea className='lg:w-full lg:m-2  w-4/5 text-black  p-3 outline rounded-2xl' type='text' {...register("post", {
 
                             })} placeholder='Write you article....' id="" cols="10" rows="5">
 

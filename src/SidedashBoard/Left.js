@@ -6,7 +6,11 @@ import { AuthContext } from '../AuthProvider/AuthProvider';
 const Left = () => {
     const { userInfo } = useContext(AuthContext)
     return (
-        <div className='p-5'>
+        <div className='p-5'
+
+
+
+        >
             <Link className='flex items-center hover:bg-gray-400 p-4 rounded-2xl mb-2   w-full'>
                 <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
 

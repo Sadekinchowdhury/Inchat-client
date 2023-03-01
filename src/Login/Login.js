@@ -21,6 +21,7 @@ const Login = () => {
 
 
     const from = location.state?.from?.pathname || '/'
+
     const auth = getAuth();
 
     const handlogin = data => {
@@ -29,6 +30,7 @@ const Login = () => {
             .then((userCredential) => {
                 // Signed in 
                 const user = userCredential.user;
+                navigate(from, { replace: true })
                 if (user?.uid) {
                     toast(`Welcome ${userInfo?.firstName}`)
                     navigate('/')
@@ -59,9 +61,12 @@ const Login = () => {
 
 
     return (
-        <div className='m-3 bg-black'>
-            <div className='grid place-items-center  lg:h-screen'>
+        <div className='m-4 lg:p-10'>
+
+            <div className='lg:w-3/12 mx-auto'>
+                <p className='text-4xl font-bold text-black text-center mt-4 mb-4'>Inchat</p>
                 <div className='bg-pink-900 p-10 shadow-2xl rounded-3xl'>
+
                     <h1 className='text-4xl text-white font-bold text-center '>Login</h1>
                     <form onSubmit={handleSubmit(handlogin)}>
 

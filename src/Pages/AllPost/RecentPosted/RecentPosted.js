@@ -27,7 +27,7 @@ const CommunityPosteds = ({ post, refetch }) => {
         }
 
 
-        fetch(`https://inchat-server.vercel.app/post/${_id}`, {
+        fetch(`https://inchat-new.vercel.app/post/${_id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
@@ -59,7 +59,7 @@ const CommunityPosteds = ({ post, refetch }) => {
 
         }
 
-        fetch(`https://inchat-server.vercel.app/post/comment/${_id}`, {
+        fetch(`https://inchat-new.vercel.app/post/comment/${_id}`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -83,7 +83,7 @@ const CommunityPosteds = ({ post, refetch }) => {
         const response = window.confirm("Do you want to delete?");
 
 
-        fetch(`https://inchat-server.vercel.app/post/${_id}`, {
+        fetch(`https://inchat-new.vercel.app/post/${_id}`, {
             method: "DELETE",
             headers: {
                 'content-type': 'application/json'

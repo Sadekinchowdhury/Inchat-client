@@ -85,7 +85,7 @@ const SignUp = () => {
                 }
 
                 const users = { email: data.email, firstName: data.firstName, lastName: data.lastName, image: imgData.data.url }
-                fetch('https://inchat-server.vercel.app/users', {
+                fetch('https://inchat-new.vercel.app/users', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'
@@ -110,9 +110,9 @@ const SignUp = () => {
 
 
     return (
-        <div className='grid place-items-center lg:h-screen'>
-            <div className='rounded-3xl'>
-                <h1 className='text-6xl mb-10 text-green-700 text-center font-bold'>Signup</h1>
+        <div className='lg:p-10 m-4'>
+            <div className='rounded-3xl lg:w-3/12 mx-auto'>
+                <h1 className='text-4xl mb-10 text-green-700 text-center font-bold'>Inchat Signup</h1>
                 <form onSubmit={handleSubmit(handlsignup)}>
                     <div className="form-control  items-center justify-center">
 
@@ -136,19 +136,19 @@ const SignUp = () => {
                             <input type="text" {...register('firstName', {
                                 required: 'name is requerd'
                             })}
-                                className="input input-bordered w-full max-w-xs" />
+                                className="input input-bordered w-full  " />
                             {errors.name && <p className='text-red-600'>
 
                                 {errors.name.message}
                             </p>}
                         </div>
-                        <div className="form-control w-full max-w-xs">
+                        <div className="form-control w-full  ">
                             <label className="label">
                                 <span className="label-text text-xl font-semibold mt-2">LastName</span></label>
                             <input type="text"  {...register('lastName', {
                                 required: 'name is requerd'
                             })}
-                                className="input input-bordered w-full max-w-xs" />
+                                className="input input-bordered w-full  " />
                             {errors.name && <p className='text-red-600'>
 
                                 {errors.name.message}
@@ -156,19 +156,19 @@ const SignUp = () => {
                         </div>
                     </div>
                     <div className='lg:flex gap-6'>
-                        <div className="form-control w-full max-w-xs">
+                        <div className="form-control w-full ">
                             <label className="label">
                                 <span className="label-text   text-xl font-semibold mt-2">Email</span></label>
                             <input type="text" {...register("email", {
                                 required: 'email is required'
                             })}
-                                className="input input-bordered w-full max-w-xs" />
+                                className="input input-bordered w-full " />
                             {errors.email && <p className='text-red-600'>{errors.email?.message}</p>}
                         </div>
 
 
 
-                        <div className="form-control w-full max-w-xs">
+                        <div className="form-control w-full ">
                             <label className="label">
                                 <span className="label-text text-xl font-semibold mt-2">password</span></label>
                             <input type="text" {...register("password", {
@@ -176,7 +176,7 @@ const SignUp = () => {
                                 minLength: { value: 6, message: 'password must be 6 carrecters' },
                                 pattern: { value: /^(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])/, message: 'password should be  an uppercase and nmbr' }
                             })}
-                                className="input input-bordered mb-6 w-full max-w-xs" />
+                                className="input input-bordered mb-6 w-full " />
                             {errors.password && <p className='text-red-600'>{errors.password?.message}</p>}
                         </div>
 

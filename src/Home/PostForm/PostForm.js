@@ -18,7 +18,11 @@ const PostForm = () => {
         curDT: new Date().toLocaleString(),
     }
 
+    if (user?.uid) {
 
+
+
+    }
     const PostButton = data => {
 
         console.log(data)
@@ -51,7 +55,7 @@ const PostForm = () => {
                     email: user?.email, date: state.curDT
 
                 }
-                fetch('https://inchat-server.vercel.app/post', {
+                fetch('https://inchat-new.vercel.app/post', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'
