@@ -69,7 +69,7 @@ const AuthProvider = ({ children }) => {
     const [userInfo, setUserInfo] = useState({});
 
     useEffect(() => {
-        fetch(`http://localhost:5000/users/${user?.email}`)
+        fetch(`https://inchat-server.vercel.app/users/${user?.email}`)
             .then((res) => res.json())
             .then((data) => setUserInfo(data));
     }, [user?.email]);

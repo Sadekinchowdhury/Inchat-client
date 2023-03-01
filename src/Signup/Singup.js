@@ -85,7 +85,7 @@ const SignUp = () => {
                 }
 
                 const users = { email: data.email, firstName: data.firstName, lastName: data.lastName, image: imgData.data.url }
-                fetch('http://localhost:5000/users', {
+                fetch('https://inchat-server.vercel.app/users', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'

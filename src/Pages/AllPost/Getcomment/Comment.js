@@ -8,7 +8,7 @@ const Comment = ({ post }) => {
     const { data: getComment = [], refetch } = useQuery({
         queryKey: ['post/comment', post?._id],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/post/comment/${post?._id}`);
+            const res = await fetch(`https://inchat-server.vercel.app/post/comment/${post?._id}`);
             const data = await res.json()
             refetch()
             return data;

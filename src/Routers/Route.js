@@ -2,10 +2,12 @@
 import React from 'react';
 import { createBrowserRouter } from 'react-router-dom';
 import Home from '../Home/Home';
-import PostForm from '../Home/PostForm/PostForm';
+
 import Main from '../Laout/Main';
 import Login from '../Login/Login';
+import PostEdit from '../Pages/Postedit/PostEdit';
 import Singup from '../Signup/Singup';
+
 
 const Route = createBrowserRouter([
     {
@@ -15,6 +17,10 @@ const Route = createBrowserRouter([
             {
                 path: '/',
                 element: <Home></Home>
+            },
+            {
+                path: '/',
+                element: <PostEdit></PostEdit>
             },
 
         ]

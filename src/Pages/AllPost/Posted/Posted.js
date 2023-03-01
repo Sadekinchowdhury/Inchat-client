@@ -23,7 +23,7 @@ const Posted = () => {
         queryKey: ['post'],
 
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/allpost', {
+            const res = await fetch('https://inchat-server.vercel.app/allpost', {
                 headers: {
 
                     'content-type': 'application/json'

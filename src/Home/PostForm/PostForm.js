@@ -51,7 +51,7 @@ const PostForm = () => {
                     email: user?.email, date: state.curDT
 
                 }
-                fetch('http://localhost:5000/post', {
+                fetch('https://inchat-server.vercel.app/post', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'
@@ -103,7 +103,7 @@ const PostForm = () => {
 
                 <form onSubmit={handleSubmit(PostButton)}>
                     <div className='m-3'>
-                        <textarea className='lg:w-full lg:m-2  p-3 outline rounded-2xl' type='text' {...register("post", {
+                        <textarea className='lg:w-full w-4/5 lg:m-2  p-3 outline rounded-2xl' type='text' {...register("post", {
 
                         })} placeholder='Write you article....' id="" cols="10" rows="5">
 

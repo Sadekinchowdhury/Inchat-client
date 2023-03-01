@@ -24,7 +24,11 @@ const Navbar = () => {
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
                     </label>
                     <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
-
+                        <li>
+                            {
+                                user?.uid ? <Link onClick={LogOut}>Logout</Link> : <> </>
+                            }
+                        </li>
 
                     </ul>
                 </div>
@@ -45,15 +49,15 @@ const Navbar = () => {
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu grid grid-cols-4 gap-14 menu-horizontal px-1">
-                    <Link title='Home' className='btn border-2  btn-ghost hover:bg-slate-400'><FaHome className='h-10 w-14'></FaHome> </Link>
+                    <Link title='Home' className='btn border-2  btn-ghost hover:bg-slate-400'><FaHome className='h-7 w-14'></FaHome> </Link>
 
-                    <Link title='Friends' className='btn border-2 btn-ghost hover:bg-slate-400 h-10 w-15'><FaUserFriends className='h-10 w-14'></FaUserFriends> </Link>
+                    <Link title='Friends' className='btn border-2 btn-ghost hover:bg-slate-400 h-7 w-15'><FaUserFriends className='h-7 w-14'></FaUserFriends> </Link>
 
-                    <Link title='Video' className='btn btn-ghost hover:bg-slate-400 h-10 w-15'><FaPlay className='h-10 w-14'></FaPlay> </Link>
+                    <Link title='Video' className='btn btn-ghost hover:bg-slate-400 h-7 w-15'><FaPlay className='h-7 w-14'></FaPlay> </Link>
 
 
 
-                    <Link title='marketplace' className='btn btn-ghost hover:bg-slate-400 h-10 w-15'><FaShoppingCart className='h-10 w-14'></FaShoppingCart> </Link>
+                    <Link title='marketplace' className='btn btn-ghost hover:bg-slate-400 h-7 w-15'><FaShoppingCart className='h-7 w-14'></FaShoppingCart> </Link>
 
 
                 </ul>
@@ -61,17 +65,17 @@ const Navbar = () => {
             </div>
             <div className="navbar-end">
                 <div className='grid grid-cols-3 lg:mr-28'>
-                    <Link className='lg:btn items-center flex lg:btn-ghost hover:bg-slate-400'><AiFillNotification className='lg:w-6 lg:h-6'></AiFillNotification><span>2</span></Link>
+                    <Link className='lg:btn items-center flex lg:btn-ghost hover:bg-slate-400'><AiFillNotification className='lg:w-4 lg:h-4'></AiFillNotification><span>2</span></Link>
 
-                    <Link className='lg:btn lg:btn-ghost hover:bg-slate-400 items-center flex '><FaFacebookMessenger className='lg:h-6 lg:w-6'></FaFacebookMessenger> <p>29</p></Link>
+                    <Link className='lg:btn lg:btn-ghost hover:bg-slate-400 items-center flex '><FaFacebookMessenger className='lg:h-4 lg:w-4'></FaFacebookMessenger> <p>29</p></Link>
 
-                    <Link className='lg:btn lg:btn-ghost hover:bg-slate-400 items-center flex'><FaFlag className='lg:h-6 lg:w-6'></FaFlag> <p>1</p> </Link>
+                    <Link className='lg:btn lg:btn-ghost hover:bg-slate-400 items-center flex'><FaFlag className='lg:h-4 lg:w-4'></FaFlag> <p>1</p> </Link>
                 </div>
                 <div className="dropdown lg:mr-10 dropdown-end">
                     <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
 
 
-                        <div className="w-24 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                        <div className="lg:w-24 w-14 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
                             <img title={userInfo?.firstName} src={userInfo?.image} alt='' />
                         </div>
 

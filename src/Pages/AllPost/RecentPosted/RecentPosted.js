@@ -27,7 +27,7 @@ const CommunityPosteds = ({ post, refetch }) => {
         }
 
 
-        fetch(`http://localhost:5000/post/${_id}`, {
+        fetch(`https://inchat-server.vercel.app/post/${_id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
@@ -59,7 +59,7 @@ const CommunityPosteds = ({ post, refetch }) => {
 
         }
 
-        fetch(`http://localhost:5000/post/comment/${_id}`, {
+        fetch(`https://inchat-server.vercel.app/post/comment/${_id}`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -83,7 +83,7 @@ const CommunityPosteds = ({ post, refetch }) => {
         const response = window.confirm("Do you want to delete?");
 
 
-        fetch(`http://localhost:5000/post/${_id}`, {
+        fetch(`https://inchat-server.vercel.app/post/${_id}`, {
             method: "DELETE",
             headers: {
                 'content-type': 'application/json'
@@ -150,16 +150,15 @@ const CommunityPosteds = ({ post, refetch }) => {
                         <ul tabIndex={0} className="mt-3 p-2 shadow-inner menu menu-compact dropdown-content bg-base-100 rounded-box">
 
                             <li>
-                                <Link><PostEdit></PostEdit></Link>
+                                <label htmlFor="my-modal-6" className="btn btn-outline">Edit</label>
                             </li>
 
-                            <li><a>
-                                <h1 className='font-semibold text-xl
-                                '>Delete </h1>
-                                <button onClick={DeletePost} className="btn">
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" /></svg>
+                            <li>
+
+                                <button onClick={DeletePost} className="btn mt-2 btn-outline">
+                                    Delete
                                 </button>
-                            </a></li>
+                            </li>
 
 
                         </ul>
@@ -237,6 +236,14 @@ const CommunityPosteds = ({ post, refetch }) => {
                 </div>
 
             </div>
+            {/* The button to open modal */}
+
+
+            <PostEdit
+                post={post}
+                key={_id}
+                refetch={refetch}
+            ></PostEdit>
         </div>
     );
 };
